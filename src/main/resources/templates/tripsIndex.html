@@ -1,0 +1,108 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .table-container {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .table thead {
+    background-color: #343a40;
+    color: white;
+  }
+
+  .table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .table tbody tr:hover {
+    background-color: #ddd;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+  }
+
+  .welcome-message {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-top: 20px;
+  }
+</style>
+
+<div class="header">
+  <h3 class="welcome-message">Welcome, Travel Management App</h3>
+</div>
+
+<div class="content">
+  <h4>Your Cab Booking History</h4>
+
+  <!-- Display a message if the list of bookings is empty -->
+  <div class="empty-message" th:if="${#lists.isEmpty(cabBookings)}">
+    <p>You have no cab bookings yet.</p>
+  </div>
+
+  <!-- Display bookings in a table if the list is not empty -->
+  <div class="table-container" th:if="${!#lists.isEmpty(cabBookings)}">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Pickup</th>
+          <th>Destination</th>
+          <th>Travel Date</th>
+          <th>Travel Time</th>
+          <th>Cab Type</th>
+          <th>Fare ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="booking : ${cabBookings}">
+          <td th:text="${booking.id}"></td>
+          <td th:text="${booking.pickup}"></td>
+          <td th:text="${booking.destination}"></td>
+          <td th:text="${booking.travelDate}"></td>
+          <td th:text="${booking.travelTime}"></td>
+          <td th:text="${booking.cabtype}"></td>
+          <td th:text="${booking.cabFare}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User</h1>
+    <form action="/users/updateUser" method="post">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <label for="email">Email:</label>
+        <input type="email" name="email" th:value="${user.email}" required><br>
+        <label for="fullName">Full Name:</label>
+        <input type="text" name="fullName" th:value="${user.fullName}" required><br>
+        <!-- Add other fields as necessary -->
+        <button type="submit">Update User</button>
+    </form>
+</body>
+</html>
